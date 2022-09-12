@@ -1,0 +1,11 @@
+{
+  "name": "highlighter",
+  "version": "1.0.0",
+  "description": "Syntax highlighter",
+  "main": "./src/format.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Andrew Carolan <acarolan@brainstation.io>",
+  "license": "ISC"
+}
