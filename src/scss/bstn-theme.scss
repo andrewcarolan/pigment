@@ -1,0 +1,39 @@
+$green: hsl(106, 60, 25);
+$purple: hsl(296, 75, 22);
+$blue: hsl(223, 53, 51);
+$dark-blue: hsl(240, 100, 19);
+
+$comment-colour: $green;
+$string-colour: $blue;
+$function-colour: $purple;
+$keyword-colour: $dark-blue;
+
+.token.keyword,
+.token.boolean {
+  color: $keyword-colour;
+  font-weight: bold;
+}
+
+.token.comment,
+.token.prolog,
+.token.doctype,
+.token.cdata {
+  color: $comment-colour;
+  font-style: italic;
+}
+
+.token.function {
+  color: $function-colour;
+}
+
+.token.selector,
+.token.string,
+.token.char,
+.token.builtin,
+.token.inserted {
+  color: $string-colour;
+}
+
+.token.attr-name {
+  color: $dark-blue;
+}

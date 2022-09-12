@@ -5,12 +5,14 @@
   "main": "./src/format.js",
   "scripts": {
     "watch": "tsc -w ./src/*.ts -outDir ./dist/",
+    "sass": "sass --no-source-map -w ./src/scss:./dist/css",
     "format": "node ./src/format"
   },
   "author": "Andrew Carolan <acarolan@brainstation.io>",
   "license": "ISC",
   "dependencies": {
     "prismjs": "^1.29.0",
-    "pug": "^3.0.2"
+    "pug": "^3.0.2",
+    "sass": "^1.54.9"
   }
 }
