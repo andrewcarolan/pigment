@@ -18,5 +18,10 @@ let highlighted = Prism.highlight(
   "typescript"
 );
 
-const html = pug.renderFile("./src/template.pug", { code: highlighted });
-fs.writeFileSync("./formatted.html", html);
+const locals = {
+  code: highlighted,
+  language: "language-typescript",
+};
+
+const html = pug.renderFile("./src/template.pug", locals);
+fs.writeFileSync("./dist/formatted.html", html);

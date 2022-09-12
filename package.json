@@ -4,7 +4,8 @@
   "description": "Syntax highlighter",
   "main": "./src/format.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "watch": "tsc -w ./src/*.ts -outDir ./dist/",
+    "format": "node ./src/format"
   },
   "author": "Andrew Carolan <acarolan@brainstation.io>",
   "license": "ISC",
