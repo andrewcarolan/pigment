@@ -40,4 +40,4 @@ const locals = {
 };
 
 const html = pug.renderFile("./src/template.pug", locals);
-fs.writeFileSync("./dist/formatted.html", html);
+fs.writeFileSync("./output/formatted.html", html);

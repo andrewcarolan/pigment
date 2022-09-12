@@ -5,8 +5,8 @@
   "main": "./src/format.js",
   "scripts": {
     "watch": "tsc -w ./src/*.ts -outDir ./dist/",
-    "sass": "sass --no-source-map -w ./src/scss:./dist/css",
-    "format": "node ./src/format"
+    "sass": "sass --no-source-map ./src/scss:./output/css",
+    "format": "npm run sass && node ./src/format"
   },
   "author": "Andrew Carolan <acarolan@brainstation.io>",
   "license": "ISC",
