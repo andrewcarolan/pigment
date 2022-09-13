@@ -47,7 +47,7 @@ const locals = {
 const html = pug.renderFile(`${INPUT_DIR}/template.pug`, locals);
 
 const { css } = sass.compile(`${INPUT_DIR}/scss/theme.scss`);
-fs.writeFileSync(`${OUTPUT_DIR}/theme.css`, css);
+fs.writeFileSync(`${OUTPUT_DIR}/css/theme.css`, css);
 
 const outputFile = `${OUTPUT_DIR}/formatted.html`;
 fs.writeFileSync(outputFile, html);
