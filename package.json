@@ -4,13 +4,13 @@
   "description": "Syntax highlighter",
   "main": "./src/format.js",
   "scripts": {
-    "watch": "tsc -w ./src/*.ts -outDir ./dist/",
-    "sass": "sass --no-source-map ./src/scss:./output/css",
-    "format": "npm run sass && node ./src/format"
+    "sass": "sass --no-source-map -w ./src/scss:./output/css",
+    "format": "node ./src/format"
   },
   "author": "Andrew Carolan <acarolan@brainstation.io>",
   "license": "ISC",
   "dependencies": {
+    "open": "^8.4.0",
     "prismjs": "^1.29.0",
     "pug": "^3.0.2",
     "sass": "^1.54.9"

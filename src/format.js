@@ -1,6 +1,11 @@
 const Prism = require("prismjs");
 const fs = require("fs");
 const pug = require("pug");
+const open = require("open");
+const sass = require("sass");
+
+const INPUT_DIR = "./src";
+const OUTPUT_DIR = "./output";
 
 const [inputFile] = process.argv.slice(2);
 const extension = inputFile.split(".").pop();
@@ -39,5 +44,13 @@ const locals = {
   language: `language-${language}`,
 };
 
-const html = pug.renderFile("./src/template.pug", locals);
-fs.writeFileSync("./output/formatted.html", html);
+const html = pug.renderFile(`${INPUT_DIR}/template.pug`, locals);
+
+const { css } = sass.compile(`${INPUT_DIR}/scss/theme.scss`);
+fs.writeFileSync(`${OUTPUT_DIR}/theme.css`, css);
+
+const outputFile = `${OUTPUT_DIR}/formatted.html`;
+fs.writeFileSync(outputFile, html);
+console.log(`Wrote file: ${outputFile}`);
+
+open(outputFile);
