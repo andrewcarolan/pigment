@@ -1,6 +1,6 @@
 {
   "name": "pigment",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Syntax highlighter",
   "bin": "./src/cli.js",
   "scripts": {
