@@ -2,12 +2,12 @@
 
 const Prism = require("prismjs");
 const fs = require("fs");
+const path = require("node:path");
 const pug = require("pug");
 const open = require("open");
 const sass = require("sass");
 
-const INPUT_DIR = "./src";
-const OUTPUT_DIR = "./output";
+const OUTPUT_DIR = "output";
 
 const [, , inputFile] = process.argv;
 
@@ -16,9 +16,8 @@ if (!inputFile?.length) {
   return 1;
 }
 
-const extension = inputFile.split(".").pop();
-
 let language;
+const extension = inputFile.split(".").pop();
 
 switch (extension) {
   case "ts":
@@ -52,12 +51,15 @@ const locals = {
   language: `language-${language}`,
 };
 
-const html = pug.renderFile(`${INPUT_DIR}/template.pug`, locals);
+const html = pug.renderFile(path.join(__dirname, "template.pug"), locals);
 
-const { css } = sass.compile(`${INPUT_DIR}/scss/theme.scss`);
-fs.writeFileSync(`${OUTPUT_DIR}/css/theme.css`, css);
+const { css } = sass.compile(path.join(__dirname, "scss", "theme.scss"));
+fs.writeFileSync(
+  path.join(__dirname, "..", OUTPUT_DIR, "css", "theme.css"),
+  css
+);
 
-const outputFile = `${OUTPUT_DIR}/formatted.html`;
+const outputFile = path.join(__dirname, "..", OUTPUT_DIR, "formatted.html");
 fs.writeFileSync(outputFile, html);
 console.log(`Wrote file: ${outputFile}`);
 
