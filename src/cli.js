@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 const Prism = require("prismjs");
 const fs = require("fs");
 const pug = require("pug");
@@ -7,7 +9,13 @@ const sass = require("sass");
 const INPUT_DIR = "./src";
 const OUTPUT_DIR = "./output";
 
-const [inputFile] = process.argv.slice(2);
+const [, , inputFile] = process.argv;
+
+if (!inputFile?.length) {
+  console.error("No input file specified");
+  return 1;
+}
+
 const extension = inputFile.split(".").pop();
 
 let language;
@@ -33,8 +41,8 @@ if (language === "typescript") {
 const code = fs.readFileSync(inputFile, { encoding: "utf8" });
 
 if (!code.length) {
-  console.log("No code");
-  return;
+  console.error("Empty input file");
+  return 1;
 }
 
 const highlighted = Prism.highlight(code, Prism.languages[language], language);

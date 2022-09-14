@@ -1,8 +1,8 @@
 {
-  "name": "highlighter",
+  "name": "pigment",
   "version": "1.0.0",
   "description": "Syntax highlighter",
-  "main": "./src/format.js",
+  "bin": "./src/cli.js",
   "scripts": {
     "sass": "sass --no-source-map -w ./src/scss:./output/css",
     "format": "node ./src/format"
