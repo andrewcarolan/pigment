@@ -16,6 +16,15 @@ if (!inputFile?.length) {
   return 1;
 }
 
+try {
+  const outputPath = path.join(__dirname, "..", OUTPUT_DIR, "css");
+  fs.mkdirSync(outputPath, { recursive: true });
+  fs.accessSync(outputPath, fs.constants.W_OK);
+} catch (err) {
+  console.error("Can't write to output directory");
+  return 1;
+}
+
 let language;
 const extension = inputFile.split(".").pop();
 

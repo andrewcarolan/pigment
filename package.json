@@ -5,7 +5,7 @@
   "bin": "./src/cli.js",
   "scripts": {
     "sass": "sass --no-source-map -w ./src/scss:./output/css",
-    "format": "node ./src/format"
+    "format": "node ./src/cli"
   },
   "author": "Andrew Carolan <acarolan@brainstation.io>",
   "license": "ISC",
