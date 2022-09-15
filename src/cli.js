@@ -8,8 +8,10 @@ const open = require("open");
 const sass = require("sass");
 
 const OUTPUT_DIR = "output";
+let [, , inputFile, theme] = process.argv;
 
-const [, , inputFile] = process.argv;
+const useCustomTheme = !theme;
+theme = !theme ? "prism.css" : `prism-${theme}.css`;
 
 if (!inputFile?.length) {
   console.error("No input file specified");
@@ -29,13 +31,15 @@ let language;
 const extension = inputFile.split(".").pop();
 
 switch (extension) {
-  case "ts":
-    language = "typescript";
-    break;
   case "html":
     language = extension;
     break;
+  case "ts":
+  case "tsx":
+    language = "typescript";
+    break;
   case "js":
+  case "jsx":
   default:
     language = "javascript";
     break;
@@ -58,14 +62,25 @@ const highlighted = Prism.highlight(code, Prism.languages[language], language);
 const locals = {
   code: highlighted,
   language: `language-${language}`,
+  theme,
+  useCustomTheme,
 };
 
-const html = pug.renderFile(path.join(__dirname, "template.pug"), locals);
+const themeScss = pug.renderFile(
+  path.join(__dirname, "templates", "theme.scss.pug"),
+  locals
+);
+fs.writeFileSync(path.join(__dirname, "scss", "theme.scss"), themeScss);
 
 const { css } = sass.compile(path.join(__dirname, "scss", "theme.scss"));
 fs.writeFileSync(
   path.join(__dirname, "..", OUTPUT_DIR, "css", "theme.css"),
   css
+);
+
+const html = pug.renderFile(
+  path.join(__dirname, "templates", "formatted.html.pug"),
+  locals
 );
 
 const outputFile = path.join(__dirname, "..", OUTPUT_DIR, "formatted.html");
