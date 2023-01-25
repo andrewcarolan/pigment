@@ -1,43 +1,53 @@
-$green: hsl(106deg, 60%, 25%);
-$purple: hsl(296deg, 75%, 22%);
-$blue: hsl(223deg, 53%, 51%);
-$dark-blue: hsl(240deg, 100%, 19%);
+@use "./partials/colours" as *;
 
-$comment-colour: $green;
+$comment-colour: $dark-green;
 $string-colour: $blue;
 $function-colour: $purple;
 $keyword-colour: $dark-blue;
+$punctuation-colour: $green;
+$number-colour: $red;
 
 /**
- * Custom theme
+ * Default theme
  */
 
-.token.keyword,
-.token.boolean {
-  color: $keyword-colour;
-  font-weight: bold;
-}
+.token {
+  &.keyword,
+  &.boolean {
+    color: $keyword-colour;
+    font-weight: bold;
+  }
 
-.token.comment,
-.token.prolog,
-.token.doctype,
-.token.cdata {
-  color: $comment-colour;
-  font-style: italic;
-}
+  &.prolog,
+  &.comment,
+  &.doctype,
+  &.cdata {
+    color: $comment-colour;
+    font-style: italic;
+  }
 
-.token.function {
-  color: $function-colour;
-}
+  &.function {
+    color: $function-colour;
+  }
 
-.token.selector,
-.token.string,
-.token.char,
-.token.builtin,
-.token.inserted {
-  color: $string-colour;
-}
+  &.selector,
+  &.string,
+  &.char,
+  &.builtin,
+  &.inserted {
+    color: $string-colour;
+  }
 
-.token.attr-name {
-  color: $dark-blue;
+  &.attr-name {
+    color: $dark-blue;
+  }
+
+  &.punctuation,
+  &.operator {
+    color: $punctuation-colour;
+  }
+
+  &.number {
+    color: $number-colour;
+  }
 }
