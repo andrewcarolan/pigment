@@ -7,6 +7,10 @@ const pug = require("pug");
 const open = require("open");
 const sass = require("sass");
 
+const { version } = require("../package.json");
+
+console.log(`pigment v${version}`);
+
 const OUTPUT_DIR = "output";
 let [, , inputFile, theme] = process.argv;
 
@@ -14,7 +18,7 @@ const useCustomTheme = !theme;
 theme = !theme ? "prism.css" : `prism-${theme}.css`;
 
 if (!inputFile?.length) {
-  console.error("No input file specified");
+  console.error("Error: No input file specified");
   return 1;
 }
 
@@ -23,7 +27,7 @@ try {
   fs.mkdirSync(outputPath, { recursive: true });
   fs.accessSync(outputPath, fs.constants.W_OK);
 } catch (err) {
-  console.error("Can't write to output directory");
+  console.error("Error: Can't write to output directory");
   return 1;
 }
 
@@ -53,7 +57,7 @@ if (language === "typescript") {
 const code = fs.readFileSync(inputFile, { encoding: "utf8" });
 
 if (!code.length) {
-  console.error("Empty input file");
+  console.error("Error: Empty input file");
   return 1;
 }
 
