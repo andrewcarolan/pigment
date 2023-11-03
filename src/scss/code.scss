@@ -12,7 +12,6 @@ code {
 
     > .line {
       text-indent: 0.5rem;
-      user-select: none;
 
       // When pasting into Google Slides, this is used as the colour of the line number marker.
       color: $grey;
@@ -24,8 +23,6 @@ code {
       // Reset the above colour so that any text not inside an element is black, not grey.
       > .line-content {
         color: $black;
-        white-space: pre-wrap;
-        user-select: text;
       }
     }
   }

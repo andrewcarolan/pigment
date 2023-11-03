@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
-const Prism = require("prismjs");
-// const Prism = require("./lib/prism");
+// const Prism = require("prismjs");
+const Prism = require("./lib/prism");
 const fs = require("fs");
 const path = require("node:path");
 const pug = require("pug");
@@ -11,9 +11,8 @@ const sass = require("sass");
 const splitLines = (code) => {
   let output = '<ol class="lines">';
 
-  // TODO: Pastebin converts tabs to `&nbsp;` entities so they are retained when pasting into Slides
   for (const line of code.split("\n")) {
-    output += `<li class=\"line\"><span class=\"line-content\">&nbsp;${line}</span></li>`;
+    output += `<li class=\"line\"><span class=\"line-content\">${line}</span></li>`;
   }
 
   output += "</ol>";
@@ -75,9 +74,12 @@ if (!code.length) {
   return 1;
 }
 
-const highlighted = splitLines(
+let highlighted = splitLines(
   Prism.highlight(code, Prism.languages[language], language)
 );
+
+// Unescape HTML entities
+highlighted = highlighted.replaceAll("&amp;", "&");
 
 const locals = {
   code: highlighted,
@@ -102,8 +104,6 @@ const html = pug.renderFile(
   path.join(__dirname, "templates", "formatted.html.pug"),
   locals
 );
-
-// TODO: copy prism lib to output
 
 const outputFile = path.join(__dirname, "..", OUTPUT_DIR, "formatted.html");
 fs.writeFileSync(outputFile, html);
