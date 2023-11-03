@@ -1,0 +1,16 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Run script",
+      "type": "node",
+      "request": "launch",
+      "skipFiles": ["<node_internals>/**"],
+      "cwd": "${workspaceFolder}",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["run-script", "format"],
+      "args": ["specimens/script.js"],
+      "console": "integratedTerminal"
+    }
+  ]
+}
