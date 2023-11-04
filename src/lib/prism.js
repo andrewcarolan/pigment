@@ -1,15 +1,11 @@
 const Prism = require("prismjs");
-
-const TAB_STOP = "  ";
+const { replaceTabs } = require("./code");
 
 Prism.hooks.add("after-tokenize", (env) => {
   const { tokens } = env;
 
-  // Convert double spaces to something that is retained when pasting into Slides
-  // TODO: add the same behaviour for tabs (`\t`)
-  env.tokens = tokens.map((t) =>
-    typeof t === "string" ? t.replaceAll(TAB_STOP, "&nbsp; ") : t
-  );
+  // Convert double spaces + tabs to something that is retained when pasting code
+  env.tokens = tokens.map((t) => (typeof t === "string" ? replaceTabs(t) : t));
 });
 
 module.exports = Prism;

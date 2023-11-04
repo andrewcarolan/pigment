@@ -1,4 +1,4 @@
 node_modules/
 dist/
-output/
+build/**/*.html
 .DS_Store

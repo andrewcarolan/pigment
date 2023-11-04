@@ -1,34 +1,34 @@
 #!/usr/bin/env node
 
-// const Prism = require("prismjs");
-const Prism = require("./lib/prism");
+const { getConfig, setConfig } = require("./config");
+
 const fs = require("fs");
 const path = require("node:path");
 const pug = require("pug");
 const open = require("open");
 const sass = require("sass");
 
-const splitLines = (code) => {
-  let output = '<ol class="lines">';
-
-  for (const line of code.split("\n")) {
-    output += `<li class=\"line\"><span class=\"line-content\">${line}</span></li>`;
-  }
-
-  output += "</ol>";
-
-  return output;
-};
-
 const { version } = require("../package.json");
 
 console.log(`pigment v${version}`);
 
-const OUTPUT_DIR = "output";
-let [, , inputFile, theme] = process.argv;
+const OUTPUT_DIR = getConfig().outputDirectory;
+let [, , inputFile, tabWidth] = process.argv;
 
+// Deprecated: set custom Prism theme
+let theme;
 const useCustomTheme = !theme;
 theme = !theme ? "prism.css" : `prism-${theme}.css`;
+
+if (tabWidth) {
+  const numericTabWidth = Number(tabWidth);
+
+  if (!isNaN(numericTabWidth)) {
+    setConfig("tabWidth", numericTabWidth);
+  } else {
+    console.warn(`Tab width must be numeric. (Received: ${tabWidth})`);
+  }
+}
 
 if (!inputFile?.length) {
   console.error("Error: No input file specified");
@@ -74,12 +74,13 @@ if (!code.length) {
   return 1;
 }
 
-let highlighted = splitLines(
-  Prism.highlight(code, Prism.languages[language], language)
-);
+const Prism = require("./lib/prism");
+const { splitLines, unescapeAmpersands } = require("./lib/code");
 
-// Unescape HTML entities
-highlighted = highlighted.replaceAll("&amp;", "&");
+// Split lines and unescape HTML entities
+let highlighted = unescapeAmpersands(
+  splitLines(Prism.highlight(code, Prism.languages[language], language))
+);
 
 const locals = {
   code: highlighted,

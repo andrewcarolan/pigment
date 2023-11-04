@@ -1,0 +1,106 @@
+@use "../../styles/partials/mixins" as *;
+
+.player {
+	height: 16rem;
+	width: 12rem;
+	box-sizing: border-box;
+	background: #eee;
+	border-radius: 0.75rem;
+	padding: 1rem;
+	gap: 1rem;
+	display: flex;
+	text-align: center;
+	flex-direction: column;
+	justify-content: space-between;
+	align-items: center;
+	font-size: 1.5rem;
+	position: relative;
+	margin-bottom: 1rem;
+	margin-right: 1rem;
+
+	&__details {
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+		flex-grow: 1;
+	}
+
+	&__button {
+		@include button;
+		margin-bottom: 0.25rem;
+	}
+
+	&__number {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+
+		&::before {
+			content: "#";
+		}
+	}
+
+	&__name {
+		font-weight: bold;
+		min-height: 20%;
+	}
+
+	&__position {
+		font-size: 0.75em;
+	}
+
+	&--captain {
+		&::after {
+			content: "C";
+			position: absolute;
+			top: 0.5rem;
+			right: 0.5rem;
+			width: 2.5rem;
+			height: 2.5rem;
+			background: gold;
+			color: black;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			border-radius: 50%;
+		}
+	}
+
+	&--inactive {
+		opacity: 0.8;
+	}
+
+	&--tor {
+		$tor-blue: hsl(216, 68, 28);
+		$tor-light-blue: scale-color(
+			$color: $tor-blue,
+			$lightness: 96%,
+		);
+		background: $tor-light-blue;
+		border: 4px solid $tor-blue;
+		color: $tor-blue;
+	}
+
+	&--mtl {
+		$mtl-red: hsl(358, 56, 41);
+		$mtl-light-red: scale-color(
+			$color: $mtl-red,
+			$lightness: 96%,
+		);
+		$mtl-blue: hsl(225, 84, 20);
+		background: $mtl-light-red;
+		border: 4px solid $mtl-red;
+		color: $mtl-blue;
+	}
+
+	&--brl {
+		$brl-yellow: hsl(39, 87, 61);
+		$brl-light-yellow: scale-color(
+			$color: $brl-yellow,
+			$lightness: 10%,
+		);
+		$brl-black: hsl(0, 0, 7);
+		background: $brl-light-yellow;
+		border: 4px solid $brl-black;
+	}
+}

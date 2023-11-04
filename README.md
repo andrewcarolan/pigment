@@ -19,9 +19,7 @@ Pigment writes the syntax-highlighted code to an HTML file and opens it your bro
 Run
 
 ```
-pigment <input file> [<theme name>]
+pigment <input file> [<tab width>]
 ```
 
-where `<theme name>` is a Prism theme.
-
-Unless you specify a theme, the default Prism theme will be applied along with this package's [custom styles](./src/scss/_custom.scss).
+The default Prism theme will be applied along with this package's [custom styles](./src/scss/_custom.scss).

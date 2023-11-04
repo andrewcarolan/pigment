@@ -1,0 +1,32 @@
+html {
+  box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+body {
+  margin: 0;
+}
+
+pre {
+  margin: 0;
+}
+
+code > .lines {
+  padding-inline-start: 3.5rem;
+  margin: 0;
+}
+code > .lines > .line {
+  text-indent: 0.5rem;
+  color: #acacac;
+}
+code > .lines > .line::marker {
+  color: #acacac;
+}
+code > .lines > .line > .line-content {
+  color: #000000;
+}
