@@ -1,5 +1,5 @@
-const Prism = require("prismjs");
-const { replaceTabs } = require("./code");
+import Prism from "prismjs";
+import { replaceTabs } from "./code.js";
 
 Prism.hooks.add("after-tokenize", (env) => {
   const { tokens } = env;
@@ -8,4 +8,4 @@ Prism.hooks.add("after-tokenize", (env) => {
   env.tokens = tokens.map((t) => (typeof t === "string" ? replaceTabs(t) : t));
 });
 
-module.exports = Prism;
+export default Prism;

@@ -1,5 +1,7 @@
-const { repeat } = require("./string");
-const { tabWidth } = require("../config").getConfig();
+import { repeat } from "./string.js";
+import { getConfig } from "../config.js";
+
+const { tabWidth } = getConfig();
 
 const DOUBLE_SPACE = "  ";
 const TAB = "\t";
@@ -22,4 +24,4 @@ const unescapeAmpersands = (str) => str.replaceAll("&amp;", "&");
 const replaceTabs = (str) =>
   str.replaceAll(DOUBLE_SPACE, SPACES).replaceAll(TAB, SPACES);
 
-module.exports = { splitLines, unescapeAmpersands, replaceTabs };
+export { splitLines, unescapeAmpersands, replaceTabs };

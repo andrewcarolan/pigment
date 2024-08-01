@@ -1,18 +1,25 @@
 #!/usr/bin/env node
 
-const { getConfig, setConfig } = require("./config");
+import { getConfig, setConfig } from "./config.js";
 
-const fs = require("fs");
-const path = require("node:path");
-const pug = require("pug");
-const open = require("open");
-const sass = require("sass");
+import fs from "node:fs";
+import path from "node:path";
+import { fileURLToPath } from "node:url";
+import pug from "pug";
+import open from "open";
+import sass from "sass";
 
-const { version } = require("../package.json");
+import Prism from "./lib/prism.js";
+import { splitLines, unescapeAmpersands } from "./lib/code.js";
+import loadLanguages from "prismjs/components/index.js";
 
+import packageDetails from "../package.json" with { type: "json" };
+const { version } = packageDetails;
 console.log(`pigment v${version}`);
 
-const OUTPUT_DIR = getConfig().outputDirectory;
+const SRC_DIR = fileURLToPath(new URL(".", import.meta.url));
+const OUTPUT_DIR = path.join(SRC_DIR, "..", getConfig().outputDirectory);
+
 let [, , inputFile, tabWidth] = process.argv;
 
 // Deprecated: set custom Prism theme
@@ -32,16 +39,16 @@ if (tabWidth) {
 
 if (!inputFile?.length) {
   console.error("Error: No input file specified");
-  return 1;
+  process.exit(1);
 }
 
 try {
-  const outputPath = path.join(__dirname, "..", OUTPUT_DIR, "css");
+  const outputPath = path.join(OUTPUT_DIR, "css");
   fs.mkdirSync(outputPath, { recursive: true });
   fs.accessSync(outputPath, fs.constants.W_OK);
 } catch (err) {
-  console.error("Error: Can't write to output directory");
-  return 1;
+  console.error("Error: Can't write to output directory", err);
+  process.exit(1);
 }
 
 let language;
@@ -63,7 +70,6 @@ switch (extension) {
 }
 
 if (language === "typescript") {
-  const loadLanguages = require("prismjs/components/");
   loadLanguages(["typescript"]);
 }
 
@@ -71,11 +77,8 @@ const code = fs.readFileSync(inputFile, { encoding: "utf8" });
 
 if (!code.length) {
   console.error("Error: Empty input file");
-  return 1;
+  process.exit(1);
 }
-
-const Prism = require("./lib/prism");
-const { splitLines, unescapeAmpersands } = require("./lib/code");
 
 // Split lines and unescape HTML entities
 let highlighted = unescapeAmpersands(
@@ -90,23 +93,23 @@ const locals = {
 };
 
 const themeScss = pug.renderFile(
-  path.join(__dirname, "templates", "theme.scss.pug"),
+  path.join(SRC_DIR, "templates", "theme.scss.pug"),
   locals
 );
-fs.writeFileSync(path.join(__dirname, "scss", "theme.scss"), themeScss);
+fs.writeFileSync(path.join(SRC_DIR, "scss", "theme.scss"), themeScss);
 
-const { css } = sass.compile(path.join(__dirname, "scss", "theme.scss"));
+const { css } = sass.compile(path.join(SRC_DIR, "scss", "theme.scss"));
 fs.writeFileSync(
-  path.join(__dirname, "..", OUTPUT_DIR, "css", "theme.css"),
+  path.join(OUTPUT_DIR, "css", "theme.css"),
   css
 );
 
 const html = pug.renderFile(
-  path.join(__dirname, "templates", "formatted.html.pug"),
+  path.join(SRC_DIR, "templates", "formatted.html.pug"),
   locals
 );
 
-const outputFile = path.join(__dirname, "..", OUTPUT_DIR, "formatted.html");
+const outputFile = path.join(OUTPUT_DIR, "formatted.html");
 fs.writeFileSync(outputFile, html);
 console.log(`Wrote file: ${outputFile}`);
 

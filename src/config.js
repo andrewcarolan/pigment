@@ -11,4 +11,4 @@ const setConfig = (property, value) => {
 
 const getConfig = () => Object.assign(DEFAULT_CONFIG, config);
 
-module.exports = { setConfig, getConfig };
+export { setConfig, getConfig };
