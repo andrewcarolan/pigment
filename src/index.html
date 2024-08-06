@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" href="./index.css" />
+    <link rel="stylesheet" href="../build/css/code.css" />
+    <link rel="stylesheet" href="../build/css/theme.css" />
+
+    <script type="importmap">
+      {
+        "imports": {
+          "prismjs": "https://esm.sh/prismjs@1.29.0"
+        }
+      }
+    </script>
+
+    <script type="module" src="./scripts/index.js" defer></script>
+
+    <title>pigment</title>
+  </head>
+  <body>
+    <div class="layout">
+      <div class="input">
+        <textarea id="input"></textarea>
+        <div class="actions">
+          <button id="formatButton">Format</button>
+        </div>
+      </div>
+
+      <div class="divider"></div>
+
+      <div class="output">
+        <pre>
+          <code id="output">
+            <!-- Append formatted code here -->
+          </code>
+        </pre>
+      </div>
+    </div>
+  </body>
+</html>
