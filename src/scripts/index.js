@@ -1,5 +1,6 @@
 import Prism, { IMPORT_URL } from "../lib/prism.js";
 import { splitLines, unescapeAmpersands } from "../lib/code.js";
+import throttle from "../lib/throttle.js";
 
 const formatButton = document.getElementById("formatButton");
 const outputElement = document.getElementById("output");
@@ -8,7 +9,7 @@ const languageSelect = document.getElementById("languageSelect");
 const sizeInput = document.getElementById("sizeInput");
 const lineNumbersOption = document.getElementById("lineNumbersOption");
 
-formatButton.addEventListener("click", async () => {
+const format = async () => {
   let language = languageSelect.value;
 
   if (!Object.keys(Prism.languages).includes(language)) {
@@ -35,4 +36,7 @@ formatButton.addEventListener("click", async () => {
   outputElement.setAttribute("class", `language-${language}`);
   outputElement.style.fontSize = (sizeInput?.value ?? 12) + "pt";
   outputElement.innerHTML = highlighted;
-});
+};
+
+formatButton.addEventListener("click", format);
+inputElement.addEventListener("input", throttle(format, 200));
