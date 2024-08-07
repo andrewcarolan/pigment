@@ -1,5 +1,8 @@
+@import url("https://fonts.googleapis.com/css2?family=Manrope:wght@300;600;800&display=swap");
+
 html {
   box-sizing: border-box;
+  font-family: "Manrope", sans-serif;
 }
 
 *,
@@ -10,7 +13,35 @@ html {
 
 body {
   margin: 0;
+  padding: 1rem;
   background: rgb(248, 250, 252);
+  color: hsl(210, 60%, 17%);
+}
+
+h1,
+h2 {
+  margin: 0.5rem 0;
+}
+
+h1 {
+  font-size: 2em;
+  font-weight: 800;
+}
+
+.title {
+  margin: 0;
+  margin-bottom: 1rem;
+  display: inline-block;
+  background-color: #d666cb;
+  background-image: linear-gradient(160deg, #ec8451, #d666cb);
+  background-clip: text;
+  -webkit-text-fill-color: rgba(0, 0, 0, 0);
+  -webkit-background-clip: text;
+}
+
+h2 {
+  font-size: 1.25em;
+  font-weight: 600;
 }
 
 button {
@@ -22,6 +53,7 @@ textarea {
   border-radius: 1rem;
   padding: 1rem;
   font-size: 1rem;
+  resize: none;
 }
 
 button {
@@ -35,42 +67,70 @@ button {
 }
 
 .actions {
-  margin: 1rem;
-  display: flex;
+  margin-bottom: 1rem;
+
+  label {
+    margin-right: 1rem;
+  }
+
+  input:not([type="checkbox"]),
+  select {
+    height: 2rem;
+    margin-right: 1rem;
+  }
+
+  select {
+    min-width: 8rem;
+  }
+
+  button {
+    display: inline-block;
+  }
 }
 
-.layout {
-  margin: 1rem;
+main {
   display: flex;
   justify-content: space-between;
-  min-height: 90vh;
+  min-height: calc(100vh - 4rem);
 }
 
 .input {
   textarea {
     width: 100%;
-    height: 100%;
+    flex-grow: 1;
     text-wrap: nowrap;
+    background: rgb(255, 253, 251);
   }
 }
 
 .input,
 .output {
-  width: 45%;
+  width: 49%;
   flex-grow: 1;
+  display: flex;
+  flex-direction: column;
 }
 
 .divider {
-  width: 5%;
+  width: 2%;
+  display: flex;
+  justify-content: center;
+
+  &::after {
+    /* content: ""; */
+    height: 100%;
+    display: block;
+    width: 1px;
+    background: hsl(210, 60%, 17%);
+  }
 }
 
 .output {
-  width: 45%;
-  border-radius: 1rem;
-  background: white;
-
   pre {
     overflow-x: auto;
-    height: 100%;
+    flex-grow: 1;
+    padding: 1rem;
+    border-radius: 1rem;
+    background: rgb(255, 253, 251);
   }
 }

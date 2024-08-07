@@ -11,33 +11,57 @@
     <script type="importmap">
       {
         "imports": {
-          "prismjs": "https://esm.sh/prismjs@1.29.0"
+          "prismjs": "https://esm.sh/prismjs@1.29.0/"
         }
       }
     </script>
-
     <script type="module" src="./scripts/index.js" defer></script>
 
     <title>pigment</title>
   </head>
   <body>
-    <div class="layout">
+    <header>
+      <h1 class="title">pigment</h1>
+
+      <form class="actions">
+        <label for="languageSelect"
+          >language
+          <select id="languageSelect">
+            <option value="javascript">JavaScript</option>
+            <option value="typescript">TypeScript</option>
+            <option value="html">HTML</option>
+            <option value="sql">SQL</option>
+            <option value="python">Python</option>
+          </select>
+        </label>
+
+        <label for="sizeInput"
+          >size
+          <input type="text" id="sizeInput" value="12" />
+        </label>
+
+        <label for="lineNumbersOption"
+          >line numbers
+          <input type="checkbox" id="lineNumbersOption" checked />
+        </label>
+
+        <button type="button" id="formatButton">format</button>
+      </form>
+    </header>
+    <main>
       <div class="input">
-        <textarea id="input"></textarea>
-        <div class="actions">
-          <button id="formatButton">Format</button>
-        </div>
+        <label for="input"><h2>input</h2></label>
+        <textarea id="input">console.log("Hello, world!");</textarea>
       </div>
 
       <div class="divider"></div>
 
       <div class="output">
-        <pre>
-          <code id="output">
-            <!-- Append formatted code here -->
-          </code>
-        </pre>
+        <h2>output</h2>
+        <pre><!--
+          --><code id="output"></code><!--
+        --></pre>
       </div>
-    </div>
+    </main>
   </body>
 </html>

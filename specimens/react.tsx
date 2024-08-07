@@ -18,6 +18,7 @@ const initialItems = [
   },
 ];
 
+@decorate
 interface TodoItem {
   id: number;
   text: string;
