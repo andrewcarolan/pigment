@@ -17,11 +17,11 @@ pre {
 }
 
 code > .lines {
-  padding-inline-start: 3.5rem;
+  padding-inline-start: 3.5em;
   margin: 0;
 }
 code > .lines > .line {
-  text-indent: 0.5rem;
+  text-indent: 0.5em;
   color: #acacac;
 }
 code > .lines > .line::marker {

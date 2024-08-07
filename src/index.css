@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Manrope:wght@300;600;800&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;600;800&display=swap");
 
 html {
   box-sizing: border-box;
@@ -14,8 +14,16 @@ html {
 body {
   margin: 0;
   padding: 1rem;
-  background: rgb(248, 250, 252);
-  color: hsl(210, 60%, 17%);
+  background: hsl(210deg 100% 98%);
+  color: hsl(210, 60%, 18%);
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+  height: 3rem;
 }
 
 h1,
@@ -28,24 +36,28 @@ h1 {
   font-weight: 800;
 }
 
-.title {
-  margin: 0;
-  margin-bottom: 1rem;
-  display: inline-block;
-  background-color: #d666cb;
-  background-image: linear-gradient(160deg, #ec8451, #d666cb);
-  background-clip: text;
-  -webkit-text-fill-color: rgba(0, 0, 0, 0);
-  -webkit-background-clip: text;
-}
-
 h2 {
   font-size: 1.25em;
   font-weight: 600;
 }
 
+.title {
+  margin: 0;
+  display: inline-block;
+  background-color: #d666cb;
+  background-image: linear-gradient(150deg, #eca951, #d666cb);
+  background-clip: text;
+  -webkit-text-fill-color: rgba(0, 0, 0, 0);
+  -webkit-background-clip: text;
+}
+
 button {
   display: block;
+}
+
+a {
+  font-weight: 400;
+  color: #d666cb;
 }
 
 textarea {
@@ -58,7 +70,7 @@ textarea {
 
 button {
   border: 0;
-  background: hsl(210, 32%, 48%);
+  background: #d666cb;
   color: white;
   padding: 0.5rem 1rem;
   font-size: 1rem;
@@ -66,9 +78,7 @@ button {
   cursor: pointer;
 }
 
-.actions {
-  margin-bottom: 1rem;
-
+.controls {
   label {
     margin-right: 1rem;
   }
@@ -91,7 +101,7 @@ button {
 main {
   display: flex;
   justify-content: space-between;
-  min-height: calc(100vh - 4rem);
+  min-height: calc(100vh - 6rem);
 }
 
 .input {
@@ -99,7 +109,7 @@ main {
     width: 100%;
     flex-grow: 1;
     text-wrap: nowrap;
-    background: rgb(255, 253, 251);
+    /* border: 1px solid hsl(210deg 60% 18% / 0.6); */
   }
 }
 
@@ -131,6 +141,7 @@ main {
     flex-grow: 1;
     padding: 1rem;
     border-radius: 1rem;
-    background: rgb(255, 253, 251);
+    background: white;
+    /* border: 1px solid hsl(210deg 60% 18% / 0.6); */
   }
 }
