@@ -1,25 +1,37 @@
-# Pigment: a syntax highlighting utility
+![pigment logo](./src/static/logotype.png)
 
-Takes an input file, applies syntax highlighting, and writes it into an HTML file so you can copy-paste the content elsewhere.
+# pigment: a syntax highlighting utility
 
-It uses Prism for formatting and supports JavaScript, TypeScript, and HTML.
+Applies syntax highlighting to input code so you can copy-paste the content elsewhere, for instance, into Google Slides.
 
-## Installation
+It uses [Prism](https://prismjs.com/) for formatting.
 
-Install the module globally using the git URL for this repo:
+The default Prism theme will be applied along with this package's [custom styles](./src/scss/_custom.scss).
+
+## Command-line usage
+
+### Install
+
+To use on the command line, install the module globally using the Git URL for this repo:
 
 ```
-npm i -g <git URL>
+npm i -g <URL>
 ```
 
-## Usage
+### Run
+
+```
+pigment <input file>
+```
 
 Pigment writes the syntax-highlighted code to an HTML file and opens it your browser.
 
-Run
+## Browser usage
+
+### Build
 
 ```
-pigment <input file> [<tab width>]
+npm run build
 ```
 
-The default Prism theme will be applied along with this package's [custom styles](./src/scss/_custom.scss).
+Serve the `dist/` directory.
