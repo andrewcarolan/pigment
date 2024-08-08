@@ -23,10 +23,19 @@
   </head>
   <body>
     <header>
-      <h1 class="title">pigment</h1>
+      <div class="info">
+        <h1 class="title">pigment</h1>
+        <a
+          href="https://github.com/andrewcarolan/pigment"
+          class="link"
+          target="_blank"
+          >GitHub</a
+        >
+      </div>
+
       <form class="controls">
-        <label for="languageSelect"
-          >language
+        <div class="field">
+          <label for="languageSelect">language</label>
           <select id="languageSelect">
             <option value="javascript">JavaScript</option>
             <option value="typescript">TypeScript</option>
@@ -34,12 +43,12 @@
             <option value="sql">SQL</option>
             <option value="python">Python</option>
           </select>
-        </label>
+        </div>
 
-        <label for="sizeInput"
-          >size
-          <input type="text" id="sizeInput" value="12" />
-        </label>
+        <div class="field">
+          <label for="sizeInput">size (pt)</label>
+          <input type="number" id="sizeInput" class="size-input" value="12" />
+        </div>
 
         <label for="lineNumbersOption"
           >line numbers
@@ -48,23 +57,21 @@
 
         <button type="button" id="formatButton">format</button>
       </form>
-      <a
-        href="https://github.com/andrewcarolan/pigment"
-        class="link"
-        target="_blank"
-        >GitHub</a
-      >
     </header>
+
     <main>
-      <div class="input">
-        <label for="input"><h2>input</h2></label>
+      <div class="panel input">
+        <label for="input">
+          <h2>input</h2>
+        </label>
         <textarea id="input">console.log("Hello, world!");</textarea>
       </div>
 
       <div class="divider"></div>
 
-      <div class="output">
+      <div class="panel output">
         <h2>output</h2>
+
         <pre><!--
           --><code id="output"></code><!--
         --></pre>

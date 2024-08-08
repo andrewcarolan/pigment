@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;600;800&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;800&display=swap");
 
 html {
   box-sizing: border-box;
@@ -21,9 +21,7 @@ body {
 header {
   display: flex;
   justify-content: space-between;
-  align-items: center;
-  margin-bottom: 1rem;
-  height: 3rem;
+  flex-wrap: wrap;
 }
 
 h1,
@@ -38,11 +36,12 @@ h1 {
 
 h2 {
   font-size: 1.25em;
-  font-weight: 600;
+  font-weight: 500;
 }
 
 .title {
   margin: 0;
+  margin-right: 1rem;
   display: inline-block;
   background-color: #d666cb;
   background-image: linear-gradient(150deg, #eca951, #d666cb);
@@ -53,6 +52,15 @@ h2 {
 
 button {
   display: block;
+  font-weight: 500;
+  border: 0;
+  background-color: #d666cb;
+  background-image: linear-gradient(150deg, #eca951, #d666cb);
+  color: white;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
 }
 
 a {
@@ -68,33 +76,23 @@ textarea {
   resize: none;
 }
 
-button {
-  border: 0;
-  background: #d666cb;
-  color: white;
-  padding: 0.5rem 1rem;
+input:not([type="checkbox"]),
+select {
+  height: 2rem;
   font-size: 1rem;
-  border-radius: 0.5rem;
-  cursor: pointer;
 }
 
-.controls {
+.size-input {
+  width: 3rem;
+}
+
+button {
+  display: inline-block;
+}
+
+.field {
   label {
-    margin-right: 1rem;
-  }
-
-  input:not([type="checkbox"]),
-  select {
-    height: 2rem;
-    margin-right: 1rem;
-  }
-
-  select {
-    min-width: 8rem;
-  }
-
-  button {
-    display: inline-block;
+    margin-right: 0.5rem;
   }
 }
 
@@ -104,34 +102,19 @@ main {
   min-height: calc(100vh - 6rem);
 }
 
-.input {
-  textarea {
-    width: 100%;
-    flex-grow: 1;
-    text-wrap: nowrap;
-    /* border: 1px solid hsl(210deg 60% 18% / 0.6); */
-  }
-}
-
-.input,
-.output {
+.panel {
   width: 49%;
   flex-grow: 1;
   display: flex;
   flex-direction: column;
 }
 
-.divider {
-  width: 2%;
-  display: flex;
-  justify-content: center;
-
-  &::after {
-    /* content: ""; */
-    height: 100%;
-    display: block;
-    width: 1px;
-    background: hsl(210, 60%, 17%);
+.input {
+  textarea {
+    width: 100%;
+    flex-grow: 1;
+    text-wrap: nowrap;
+    /* border: 1px solid hsl(210deg 60% 18% / 0.6); */
   }
 }
 
@@ -144,4 +127,17 @@ main {
     background: white;
     /* border: 1px solid hsl(210deg 60% 18% / 0.6); */
   }
+}
+
+.divider {
+  width: 2rem;
+}
+
+.controls {
+  display: flex;
+  align-items: center;
+  min-height: 3rem;
+  gap: 1rem 2rem;
+  flex-wrap: wrap;
+  align-self: flex-end;
 }

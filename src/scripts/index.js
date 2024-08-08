@@ -1,8 +1,8 @@
 import Prism, { IMPORT_URL } from "../lib/prism.js";
 import { splitLines, unescapeAmpersands } from "../lib/code.js";
-import throttle from "../lib/throttle.js";
+import { debounce } from "../lib/throttle.js";
 
-const formatButton = document.getElementById("formatButton");
+// const formatButton = document.getElementById("formatButton");
 const outputElement = document.getElementById("output");
 const inputElement = document.getElementById("input");
 const languageSelect = document.getElementById("languageSelect");
@@ -38,5 +38,10 @@ const format = async () => {
   outputElement.innerHTML = highlighted;
 };
 
-formatButton.addEventListener("click", format);
-inputElement.addEventListener("input", throttle(format, 200));
+const throttledFormat = debounce(format, 100);
+
+formatButton.addEventListener("click", throttledFormat);
+inputElement.addEventListener("input", throttledFormat);
+languageSelect.addEventListener("change", throttledFormat);
+sizeInput.addEventListener("change", throttledFormat);
+lineNumbersOption.addEventListener("change", throttledFormat);

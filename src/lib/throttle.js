@@ -1,6 +1,6 @@
 const throttle = (func, interval) => {
   let lastCall = 0;
-  return function (...args) {
+  return (...args) => {
     const now = new Date();
     if (now - lastCall >= interval) {
       func(...args);
@@ -9,4 +9,15 @@ const throttle = (func, interval) => {
   };
 };
 
-export default throttle;
+const debounce = (func, interval) => {
+  let timer;
+
+  return (...args) => {
+    clearTimeout(timer);
+    timer = setTimeout(() => {
+      func.apply(this, args);
+    }, interval);
+  };
+};
+
+export { throttle, debounce };
