@@ -34,14 +34,19 @@ const format = async () => {
   highlighted = unescapeAmpersands(highlighted);
 
   outputElement.setAttribute("class", `language-${language}`);
-  outputElement.style.fontSize = (sizeInput?.value ?? 12) + "pt";
+  setOutputSize();
   outputElement.innerHTML = highlighted;
 };
 
-const throttledFormat = debounce(format, 100);
+const setOutputSize = () => {
+  outputElement.style.fontSize = (sizeInput?.value ?? 12) + "pt";
+};
+
+const UPDATE_INTERVAL = 100;
+const throttledFormat = debounce(format, UPDATE_INTERVAL);
 
 formatButton.addEventListener("click", throttledFormat);
 inputElement.addEventListener("input", throttledFormat);
 languageSelect.addEventListener("change", throttledFormat);
-sizeInput.addEventListener("change", throttledFormat);
+sizeInput.addEventListener("change", debounce(setOutputSize, UPDATE_INTERVAL));
 lineNumbersOption.addEventListener("change", throttledFormat);
