@@ -1,6 +1,6 @@
 const DEFAULT_CONFIG = {
   tabWidth: 2, // spaces
-  outputDirectory: "build",
+  outputDirectory: "output",
 };
 
 const config = {};

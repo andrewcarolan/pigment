@@ -5,8 +5,10 @@
   "bin": "src/cli.js",
   "type": "module",
   "scripts": {
-    "sass": "sass --no-source-map -w src/scss:build/css",
-    "format": "node src/cli"
+    "sass": "sass --no-source-map src/scss:build/css",
+    "format": "node src/cli",
+    "build": "mkdir -p dist && sass --no-source-map src/scss:dist/css && cp -r src/index.* src/config.js src/scripts src/lib src/static dist",
+    "dev": "npm run build && serve dist"
   },
   "author": "Andrew Carolan <acarolan@brainstation.io>",
   "license": "ISC",
@@ -15,5 +17,8 @@
     "prismjs": "^1.29.0",
     "pug": "^3.0.2",
     "sass": "^1.54.9"
+  },
+  "devDependencies": {
+    "serve": "^14.2.3"
   }
 }
