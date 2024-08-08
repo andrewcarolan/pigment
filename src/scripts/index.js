@@ -48,5 +48,15 @@ const throttledFormat = debounce(format, UPDATE_INTERVAL);
 formatButton.addEventListener("click", throttledFormat);
 inputElement.addEventListener("input", throttledFormat);
 languageSelect.addEventListener("change", throttledFormat);
-sizeInput.addEventListener("change", debounce(setOutputSize, UPDATE_INTERVAL));
 lineNumbersOption.addEventListener("change", throttledFormat);
+
+sizeInput.addEventListener(
+  "change",
+  debounce(() => {
+    if (!outputElement.innerHTML) {
+      format();
+    } else {
+      setOutputSize();
+    }
+  }, UPDATE_INTERVAL)
+);

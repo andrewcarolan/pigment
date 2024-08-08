@@ -1,5 +1,11 @@
 @import url("https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;800&display=swap");
 
+:root {
+  --primary-colour: #d666cb;
+  --primary-gradient: linear-gradient(150deg, #eca951, #d666cb);
+  --border-style: 1px solid hsl(210 40% 60% / 1);
+}
+
 html {
   box-sizing: border-box;
   font-family: "Manrope", sans-serif;
@@ -13,9 +19,15 @@ html {
 
 body {
   margin: 0;
-  padding: 1rem;
+  padding: 1.5rem;
   background: hsl(210deg 100% 98%);
   color: hsl(210, 60%, 18%);
+}
+
+main {
+  display: flex;
+  justify-content: space-between;
+  min-height: calc(100vh - 6rem);
 }
 
 header {
@@ -24,17 +36,20 @@ header {
   flex-wrap: wrap;
 }
 
-h1,
-h2 {
-  margin: 0.5rem 0;
+footer {
+  display: flex;
+  justify-content: flex-end;
+  padding-top: 1rem;
 }
 
 h1 {
+  margin: 0.5rem 0;
   font-size: 2em;
   font-weight: 800;
 }
 
 h2 {
+  margin: 1rem 0 0.5rem 0;
   font-size: 1.25em;
   font-weight: 500;
 }
@@ -43,8 +58,9 @@ h2 {
   margin: 0;
   margin-right: 1rem;
   display: inline-block;
-  background-color: #d666cb;
-  background-image: linear-gradient(150deg, #eca951, #d666cb);
+  user-select: none;
+  background-color: var(--primary-colour);
+  background-image: var(--primary-gradient);
   background-clip: text;
   -webkit-text-fill-color: rgba(0, 0, 0, 0);
   -webkit-background-clip: text;
@@ -54,18 +70,24 @@ button {
   display: block;
   font-weight: 500;
   border: 0;
-  background-color: #d666cb;
-  background-image: linear-gradient(150deg, #eca951, #d666cb);
+  background-color: var(--primary-colour);
+  background-image: var(--primary-gradient);
   color: white;
   padding: 0.5rem 1rem;
   font-size: 1rem;
   border-radius: 2rem;
   cursor: pointer;
+
+  transition: box-shadow 0.3s;
+
+  &:hover {
+    box-shadow: 0 2px 6px 0px #d666cb99;
+  }
 }
 
 a {
   font-weight: 400;
-  color: #d666cb;
+  color: var(--primary-colour);
 }
 
 textarea {
@@ -80,6 +102,8 @@ input:not([type="checkbox"]),
 select {
   height: 2rem;
   font-size: 1rem;
+  border: var(--border-style);
+  border-radius: 0.25rem;
 }
 
 .size-input {
@@ -96,12 +120,6 @@ button {
   }
 }
 
-main {
-  display: flex;
-  justify-content: space-between;
-  min-height: calc(100vh - 6rem);
-}
-
 .panel {
   width: 49%;
   flex-grow: 1;
@@ -111,10 +129,11 @@ main {
 
 .input {
   textarea {
+    font-family: Consolas, Monaco, monospace;
     width: 100%;
     flex-grow: 1;
     text-wrap: nowrap;
-    /* border: 1px solid hsl(210deg 60% 18% / 0.6); */
+    border: var(--border-style);
   }
 }
 
@@ -125,7 +144,7 @@ main {
     padding: 1rem;
     border-radius: 1rem;
     background: white;
-    /* border: 1px solid hsl(210deg 60% 18% / 0.6); */
+    border: var(--border-style);
   }
 }
 
