@@ -5,12 +5,20 @@
 
 pre {
   margin: 0;
+
+  &.theme-dark {
+    background-color: $black;
+  }
 }
 
 code,
 code[class*="language-"] {
   text-shadow: none;
   color: $black;
+
+  .theme-dark & {
+    color: $white;
+  }
 
   .lines {
     padding-inline-start: 2.5em;
@@ -28,13 +36,26 @@ code[class*="language-"] {
     }
   }
 
-  // Reset the above colour so that any text not inside an element is black, not grey.
+  // Reset the above colour so that any text outside a token is black, not grey.
   .line-content {
     color: $black;
+
+    .theme-dark & {
+      color: $white;
+    }
   }
 }
 
 .token {
+  // Reset a weird background colour in the Prism default theme.
+  &.operator,
+  &.entity,
+  &.url,
+  .language-css &.string,
+  .style &.string {
+    background: none;
+  }
+
   &.keyword,
   &.boolean {
     color: $blue;
@@ -69,7 +90,7 @@ code[class*="language-"] {
   &.attr-value {
     color: $orange;
 
-    > .token {
+    .token {
       // Quotes in attribute values use value colour (not punctuation colour)
       &.punctuation:not(.attr-equals) {
         color: inherit;
@@ -79,6 +100,10 @@ code[class*="language-"] {
 
   &.punctuation {
     color: $black;
+
+    .theme-dark & {
+      color: $white;
+    }
   }
 
   &.operator,

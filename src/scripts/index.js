@@ -6,6 +6,7 @@ import { debounce } from "../lib/throttle.js";
 const outputElement = document.getElementById("output");
 const inputElement = document.getElementById("input");
 const languageSelect = document.getElementById("languageSelect");
+const themeSelect = document.getElementById("themeSelect");
 const sizeInput = document.getElementById("sizeInput");
 const lineNumbersOption = document.getElementById("lineNumbersOption");
 
@@ -34,6 +35,12 @@ const format = async () => {
   highlighted = unescapeAmpersands(highlighted);
 
   outputElement.setAttribute("class", `language-${language}`);
+
+  const { parentElement } = outputElement;
+  if (parentElement?.nodeName.toLowerCase() === "pre") {
+    parentElement.setAttribute("class", `theme-${themeSelect.value}`);
+  }
+
   setOutputSize();
   outputElement.innerHTML = highlighted;
 };
@@ -48,6 +55,7 @@ const throttledFormat = debounce(format, UPDATE_INTERVAL);
 formatButton.addEventListener("click", throttledFormat);
 inputElement.addEventListener("input", throttledFormat);
 languageSelect.addEventListener("change", throttledFormat);
+themeSelect.addEventListener("change", throttledFormat);
 lineNumbersOption.addEventListener("change", throttledFormat);
 
 sizeInput.addEventListener(
