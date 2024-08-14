@@ -54,13 +54,27 @@ code[class*="language-"] {
 
   &.string,
   &.char,
-  &.builtin,
   &.inserted {
     color: $orange;
   }
 
-  &.attr-name {
+  &.tag {
     color: $blue;
+  }
+
+  &.attr-name {
+    color: $green;
+  }
+
+  &.attr-value {
+    color: $orange;
+
+    > .token {
+      // Quotes in attribute values use value colour (not punctuation colour)
+      &.punctuation:not(.attr-equals) {
+        color: inherit;
+      }
+    }
   }
 
   &.punctuation {
@@ -79,15 +93,31 @@ code[class*="language-"] {
   &.property {
     color: $purple;
   }
+
+  &.decorator {
+    color: $green;
+
+    > .token {
+      color: inherit;
+    }
+  }
+
+  &.builtin {
+    color: $purple;
+  }
+
+  &.identifier {
+    color: $green;
+  }
+
+  &.selector {
+    color: $blue;
+  }
 }
 
 .language-css,
 .language-scss {
   .token {
-    &.selector {
-      color: $blue;
-    }
-
     &.keyword {
       color: $green;
     }
