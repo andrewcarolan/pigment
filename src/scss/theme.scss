@@ -1,3 +1,99 @@
-@use "./partials/global";
+@use "./partials/reset";
+@use "./partials/colours" as *;
+
 @use "../../node_modules/prismjs/themes/prism.css";
-@use "./custom";
+
+pre {
+  margin: 0;
+}
+
+code,
+code[class*="language-"] {
+  text-shadow: none;
+  color: $black;
+
+  .lines {
+    padding-inline-start: 2.5em;
+    margin: 0;
+  }
+
+  .line {
+    text-indent: 0.5em;
+
+    // When pasting into Google Slides, this is used as the colour of the line number marker.
+    color: $light-grey;
+
+    &::marker {
+      color: $light-grey;
+    }
+  }
+
+  // Reset the above colour so that any text not inside an element is black, not grey.
+  .line-content {
+    color: $black;
+  }
+}
+
+.token {
+  &.keyword,
+  &.boolean {
+    color: $blue;
+  }
+
+  &.prolog,
+  &.comment,
+  &.doctype,
+  &.cdata {
+    color: $light-grey;
+    font-style: italic;
+  }
+
+  &.function {
+    color: $green;
+  }
+
+  &.string,
+  &.char,
+  &.builtin,
+  &.inserted {
+    color: $orange;
+  }
+
+  &.attr-name {
+    color: $blue;
+  }
+
+  &.punctuation {
+    color: $black;
+  }
+
+  &.operator,
+  &.number {
+    color: $red;
+  }
+
+  &.parameter {
+    color: $purple;
+  }
+
+  &.property {
+    color: $purple;
+  }
+}
+
+.language-css,
+.language-scss {
+  .token {
+    &.selector {
+      color: $blue;
+    }
+
+    &.keyword {
+      color: $green;
+    }
+
+    &.parent {
+      color: $red;
+    }
+  }
+}

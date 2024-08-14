@@ -22,11 +22,6 @@ const OUTPUT_DIR = path.join(SRC_DIR, "..", getConfig().outputDirectory);
 
 let [, , inputFile, tabWidth] = process.argv;
 
-// Deprecated: set custom Prism theme
-let theme;
-const useCustomTheme = !theme;
-theme = !theme ? "prism.css" : `prism-${theme}.css`;
-
 if (tabWidth) {
   const numericTabWidth = Number(tabWidth);
 
@@ -88,15 +83,7 @@ let highlighted = unescapeAmpersands(
 const locals = {
   code: highlighted,
   language: `language-${language}`,
-  theme,
-  useCustomTheme,
 };
-
-const themeScss = pug.renderFile(
-  path.join(SRC_DIR, "templates", "theme.scss.pug"),
-  locals
-);
-fs.writeFileSync(path.join(SRC_DIR, "scss", "theme.scss"), themeScss);
 
 const { css } = sass.compile(path.join(SRC_DIR, "scss", "theme.scss"));
 fs.writeFileSync(
