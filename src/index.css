@@ -131,6 +131,7 @@ button {
   textarea {
     font-family: Consolas, Monaco, monospace;
     width: 100%;
+    font-size: 11pt;
     flex-grow: 1;
     text-wrap: nowrap;
     border: var(--border-style);
@@ -143,7 +144,6 @@ button {
     flex-grow: 1;
     padding: 1rem;
     border-radius: 1rem;
-    background: white;
     border: var(--border-style);
   }
 }
