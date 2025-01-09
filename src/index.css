@@ -21,7 +21,6 @@ html {
 
 body {
   margin: 0;
-  padding: 1.5rem;
   background: var(--background-colour);
   color: var(--text-colour);
 }
@@ -36,6 +35,8 @@ header {
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
+  padding: 1.5rem;
+  border-bottom: var(--border-style);
 }
 
 footer {
@@ -114,7 +115,6 @@ a {
 
 textarea {
   border: 0;
-  border-radius: 1rem;
   padding: 1rem;
   font-size: 1rem;
   resize: none;
@@ -143,8 +143,7 @@ button {
 }
 
 .panel {
-  width: 49%;
-  flex-grow: 1;
+  flex: 1;
   display: flex;
   flex-direction: column;
 }
@@ -154,24 +153,45 @@ button {
     font-family: Consolas, Monaco, monospace;
     width: 100%;
     font-size: 11pt;
-    flex-grow: 1;
+    flex: 1;
     text-wrap: nowrap;
-    border: var(--border-style);
   }
 }
 
 .output {
   pre {
     overflow-x: auto;
-    flex-grow: 1;
+    flex: 1;
     padding: 1rem;
-    border-radius: 1rem;
-    border: var(--border-style);
   }
 }
 
 .divider {
-  width: 2rem;
+  width: 0.25rem;
+  border-right: var(--border-style);
+  border-left: var(--border-style);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &:hover {
+    cursor: ew-resize;
+  }
+
+  &::after {
+    content: "\22ee";
+    background: white;
+    border: var(--border-style);
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    border-radius: 0.25rem;
+    font-size: 1.25rem;
+  }
+}
+
+.divider.active {
+  background: hsl(210 40% 60% / 1);
 }
 
 .controls {

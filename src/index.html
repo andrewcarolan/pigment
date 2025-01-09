@@ -17,6 +17,7 @@
       }
     </script>
     <script type="module" src="./scripts/detect.js" defer></script>
+    <script type="module" src="./scripts/panel.js" defer></script>
     <script type="module" src="./scripts/index.js" defer></script>
 
     <title>pigment</title>
@@ -64,16 +65,16 @@
 
     <main>
       <div class="panel input">
-        <label for="input">
+        <!-- <label for="input">
           <h2>input</h2>
-        </label>
+        </label> -->
         <textarea id="input" autofocus>console.log("Hello, world!");</textarea>
       </div>
 
-      <div class="divider"></div>
+      <div class="divider" id="divider"></div>
 
       <div class="panel output">
-        <h2>output</h2>
+        <!-- <h2>output</h2> -->
 
         <pre><!--
           --><code id="output"></code><!--
