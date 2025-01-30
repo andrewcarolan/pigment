@@ -6,6 +6,7 @@
   --primary-colour: #d666cb;
   --primary-gradient: linear-gradient(150deg, #eca951, #d666cb);
   --border-style: 1px solid hsl(210 40% 60% / 1);
+  --header-height: 5rem;
 }
 
 html {
@@ -28,14 +29,14 @@ body {
 main {
   display: flex;
   justify-content: space-between;
-  min-height: calc(100vh - 6rem);
+  min-height: calc(100vh - var(--header-height));
 }
 
 header {
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
-  padding: 1.5rem;
+  padding: 1rem;
   border-bottom: var(--border-style);
 }
 
@@ -175,18 +176,7 @@ button {
   align-items: center;
 
   &:hover {
-    cursor: ew-resize;
-  }
-
-  &::after {
-    content: "\22ee";
-    background: white;
-    border: var(--border-style);
-    position: absolute;
-    display: flex;
-    justify-content: center;
-    border-radius: 0.25rem;
-    font-size: 1.25rem;
+    cursor: col-resize;
   }
 }
 

@@ -5,9 +5,9 @@
   "bin": "src/cli.js",
   "type": "module",
   "scripts": {
-    "sass": "sass --no-source-map src/scss:build/css",
+    "sass": "sass --no-source-map src/scss:dist/css",
     "format": "node src/cli",
-    "build": "mkdir -p dist && npm run clean && sass --no-source-map src/scss:dist/css && cp -r src/index.* src/config.js src/scripts src/lib src/static dist",
+    "build": "mkdir -p dist && npm run clean && npm run sass && cp -r src/index.* src/config.js src/scripts src/lib src/static dist",
     "clean": "rm -rf dist/**/*",
     "dev": "npm run build && serve dist"
   },
