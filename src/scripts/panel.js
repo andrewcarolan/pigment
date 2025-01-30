@@ -1,13 +1,5 @@
-import { calculateRelativePosition } from "https://esm.sh/gh/andrewcarolan/pico-player@v1.1.0/lib/rect.js";
-import throttle from "https://esm.sh/gh/andrewcarolan/pico-player@v1.1.0/lib/throttle.js";
-
-const calculateXOffset = (element, x) => {
-  const { width } = element.getBoundingClientRect();
-
-  const offset = x / width;
-
-  return [offset, 1 - offset];
-};
+import { calculateRelativePosition } from "pico-player/lib/rect.js";
+import throttle from "pico-player/lib/throttle.js";
 
 const container = document.querySelector("main");
 const divider = container.querySelector("#divider");
@@ -18,10 +10,6 @@ const [panel1, panel2] = document.querySelectorAll(".panel");
 const handleMove = throttle((event) => {
   const [x] = calculateRelativePosition(container, event);
 
-  //   const [offset, remainder] = calculateXOffset(container, x);
-  //   panel1.style.flex = offset;
-  //   panel2.style.flex = remainder;
-
   const { width } = container.getBoundingClientRect();
 
   panel1.style.flexBasis = `${x}px`;
@@ -31,7 +19,6 @@ const handleMove = throttle((event) => {
 let isListening = false;
 
 divider.addEventListener("mousedown", () => {
-  console.log("start");
   divider.classList.add("active");
   window.addEventListener("mousemove", handleMove);
   isListening = true;
@@ -39,7 +26,6 @@ divider.addEventListener("mousedown", () => {
 
 window.addEventListener("mouseup", () => {
   if (isListening) {
-    console.log("stop");
     divider.classList.remove("active");
     window.removeEventListener("mousemove", handleMove);
     isListening = false;
