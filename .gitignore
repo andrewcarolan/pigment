@@ -4,3 +4,4 @@ build/
 output/
 
 .DS_Store
+appspec.yaml
