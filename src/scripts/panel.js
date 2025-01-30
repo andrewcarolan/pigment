@@ -1,5 +1,5 @@
-import { calculateRelativePosition } from "pico-player/lib/rect.js";
-import throttle from "pico-player/lib/throttle.js";
+import { calculateRelativePosition } from "helpers/lib/rect.js";
+import throttle from "helpers/lib/throttle.js";
 
 const container = document.querySelector("main");
 const divider = container.querySelector("#divider");
