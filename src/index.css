@@ -191,7 +191,7 @@ button {
   justify-content: center;
   align-items: center;
 
-  &:hover {
+  &.ready:hover {
     cursor: col-resize;
   }
 

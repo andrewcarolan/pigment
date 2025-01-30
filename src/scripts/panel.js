@@ -11,9 +11,9 @@ const calculateXOffset = (element, x) => {
 
 const container = document.querySelector("main");
 const divider = container.querySelector("#divider");
+divider.classList.add("ready");
 
 const [panel1, panel2] = document.querySelectorAll(".panel");
-console.log(panel1, panel2);
 
 const handleMove = throttle((event) => {
   const [x] = calculateRelativePosition(container, event);
