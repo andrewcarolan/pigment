@@ -1,6 +1,8 @@
 @import url("https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;800&display=swap");
 
 :root {
+  --background-colour: hsl(210deg 100% 98%);
+  --text-colour: hsl(210, 60%, 18%);
   --primary-colour: #d666cb;
   --primary-gradient: linear-gradient(150deg, #eca951, #d666cb);
   --border-style: 1px solid hsl(210 40% 60% / 1);
@@ -20,8 +22,8 @@ html {
 body {
   margin: 0;
   padding: 1.5rem;
-  background: hsl(210deg 100% 98%);
-  color: hsl(210, 60%, 18%);
+  background: var(--background-colour);
+  color: var(--text-colour);
 }
 
 main {
@@ -54,6 +56,18 @@ h2 {
   font-weight: 500;
 }
 
+dialog[open] {
+  position: fixed;
+  top: 0;
+  border: none;
+  border-radius: 1rem;
+  width: 60%;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .title {
   margin: 0;
   margin-right: 1rem;
@@ -68,10 +82,9 @@ h2 {
 
 button {
   display: block;
-  font-weight: 500;
   border: 0;
-  background-color: var(--primary-colour);
-  background-image: var(--primary-gradient);
+  font-weight: 500;
+  background-color: var(--text-colour);
   color: white;
   padding: 0.5rem 1rem;
   font-size: 1rem;
@@ -81,7 +94,16 @@ button {
   transition: box-shadow 0.3s;
 
   &:hover {
-    box-shadow: 0 2px 6px 0px #d666cb99;
+    box-shadow: 0 2px 6px 0px var(--text-colour);
+  }
+
+  &.gradient {
+    background-color: var(--primary-colour);
+    background-image: var(--primary-gradient);
+
+    &:hover {
+      box-shadow: 0 2px 6px 0px var(--primary-colour);
+    }
   }
 }
 

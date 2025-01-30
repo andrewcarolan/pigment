@@ -16,6 +16,7 @@
         }
       }
     </script>
+    <script type="module" src="./scripts/detect.js" defer></script>
     <script type="module" src="./scripts/index.js" defer></script>
 
     <title>pigment</title>
@@ -57,7 +58,7 @@
           <input type="checkbox" id="lineNumbersOption" checked />
         </label>
 
-        <button type="button" id="formatButton">apply</button>
+        <button class="gradient" type="button" id="formatButton">apply</button>
       </div>
     </header>
 
@@ -79,5 +80,13 @@
         --></pre>
       </div>
     </main>
+
+    <dialog id="warning" class="warning">
+      <p>
+        The browser has insufficient JavaScript support to use pigment. Consider
+        updating the browser to a newer version.
+      </p>
+      <button id="close-button">Close</button>
+    </dialog>
   </body>
 </html>
