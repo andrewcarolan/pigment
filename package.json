@@ -9,7 +9,8 @@
     "format": "node src/cli",
     "build": "mkdir -p dist && npm run clean && npm run sass && cp -r src/index.* src/config.js src/scripts src/lib src/static dist",
     "clean": "rm -rf dist/**/*",
-    "dev": "npm run build && serve dist"
+    "dev": "npm run build && serve dist",
+    "bundle": "rollup -c"
   },
   "author": "Andrew Carolan <acarolan@brainstation.io>",
   "license": "ISC",
@@ -20,6 +21,9 @@
     "sass": "^1.54.9"
   },
   "devDependencies": {
+    "@rollup/plugin-node-resolve": "^16.0.0",
+    "rollup": "^4.32.1",
+    "rollup-plugin-url-resolve": "^0.2.0",
     "serve": "^14.2.3"
   }
 }
